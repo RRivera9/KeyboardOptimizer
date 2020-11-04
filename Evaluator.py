@@ -35,20 +35,7 @@ def fingerRepetitionEvaluator(keyboard, trainingSet):
         else:
             currentFinger = 0
         pastFinger = currentFinger
-    return fingerRepetitionCounter, fingerHitsPerFinger, repetitionsPerFinger
-
-def textEvaluator(trainingSet):
-    f = open(trainingSet, "r")
-    letterFrequency = {}
-    bigrams = {}
-    uniqueletters = set("qwertyuiopasdfghjkl;zxcvbnm,./")
-    for i in "qwertyuiopasdfghjkl;zxcvbnm,./":
-        letterFrequency[i] = 0
-    for letter in f.read().lower():
-        if letter in uniqueletters:
-            pass
-    #TODO: create a table of bigram frequencies, so that we can spit that table out and figure out our best swaps
-
+    return fingerRepetitionCounter, repetitionsPerFinger, fingerHitsPerFinger
 
 
 test1 = "abcdefghijklmnopqrstuvwxyz"
@@ -56,6 +43,8 @@ test2 = "qwertyuiopasdfghjkl;zxcvbnm,./"
 test3 = "qazwsxedcrfvtgbyhnujmik,ol.p;/"
 
 for i in KeyboardModel.keyboardBundle:
-    print(baseEvaluator(i, "TomsCabin.txt"))
-    print(fingerRepetitionEvaluator(i, "TomsCabin.txt"))
-    print("-------------- "+str(i.layout)+" ---------------")
+    print(i.showLayout())
+    print("base difficulty", baseEvaluator(i, "TomsCabin"))
+    print("repetition", fingerRepetitionEvaluator(i, "TomsCabin"))
+    print("-------------------------------------------------")
+

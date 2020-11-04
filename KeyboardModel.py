@@ -15,7 +15,7 @@ QAZ are all hit by the left pinky, which is finger 1 here. Fingers range from 1-
 
 class Keyboard:
     def __init__(self, layoutString):
-        self.layout = layoutString
+        self.layout = layoutString.strip("\n")
         self.layoutPositionToLetter = {k: v for k, v in enumerate(layoutString)}   # map the position to the letters assigned
         self.layoutLetterToPosition = {v: k for k, v in enumerate(layoutString)}   # map the letters to their position on the keyboard
         self.layoutLetterToPosition["?"] = self.layoutLetterToPosition["/"]
@@ -24,19 +24,19 @@ class Keyboard:
         self.layoutBaseEffort = {0: 6,                                # How hard is it to hit the key by default? Set here.
                             1: 3,                                # Note that we penalize pinkies reaching upward
                             2: 3,                                # 30 is reserved for ' " key, or /? on dvorak. Floater
-                            3: 3,
-                            4: 4,
+                            3: 5,
+                            4: 6,
                             10: 0,
                             11: 0,
                             12: 0,
                             13: 0,
                             14: 2,
-                            20: 3,
+                            20: 2,
                             21: 5,
                             22: 6,
                             23: 3,
-                            24: 5,
-                            30: 6}
+                            24: 4,
+                            30: 2}
         for i in range(5):                                     # Now we mirror the keys, so left and right difficulty
             self.layoutBaseEffort[9-i] = self.layoutBaseEffort[i]        # match up.
             self.layoutBaseEffort[19-i] = self.layoutBaseEffort[10+i]
@@ -72,11 +72,14 @@ class Keyboard:
 
 qwertyKeyboard = Keyboard("qwertyuiopasdfghjkl;zxcvbnm,./'")
 dvorakKeyboard = Keyboard("',.pyfgcrlaoeuidhtns;qjkxbmwvz/")
+dvorakCustomKeyboard = Keyboard("',.pyfgcrlaoeuidhtns;qjkxbmwvz/")
 colemakKeyboard = Keyboard("qwfpgjluy;arstdhneiozxcvbkm,./'")
-custom1Keyboard = Keyboard(";,.ypfwlrkaoeiudhtnszxcv'bmgjq/")
-custom2Keyboard = Keyboard(";,.ypflwrkaoeiudhtnszxcv'bmgjq/")
-#custom3Keyboard = Keyboard(";,.ypfwlrkaoeiudhtnszxcv'bmgjq/")
-keyboardBundle = [qwertyKeyboard, dvorakKeyboard, colemakKeyboard, custom1Keyboard, custom2Keyboard]
+colemakOptimizedKeyboard = Keyboard(";bufpwmlygioeahdtnsr/.,kjqvcxz'")
+colemakCustomKeyboard = Keyboard(";bufpwmlygioeahdtnsrcvzkjq,.x/'")
+custom1Keyboard = Keyboard(";,uypfwlrkaoei.dhtnsxqzv'bmgjc/")
+custom2Keyboard = Keyboard("q,uypfwlrkaoei.dhtnsxz;v'bmgjc/")
+custom3Keyboard = Keyboard(";,.ypfwlrkaoeiudhtnszxcv'bmgjq/")
+keyboardBundle = [qwertyKeyboard, dvorakKeyboard, dvorakCustomKeyboard, colemakKeyboard, colemakOptimizedKeyboard, colemakCustomKeyboard, custom1Keyboard, custom2Keyboard, custom3Keyboard]
 #custom2Keyboard = Keyboard("")
 #custom2Keyboard = Keyboard("")
 
