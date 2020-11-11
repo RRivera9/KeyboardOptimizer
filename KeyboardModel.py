@@ -16,8 +16,12 @@ QAZ are all hit by the left pinky, which is finger 1 here. Fingers range from 1-
 class Keyboard:
     def __init__(self, layoutString):
         self.layout = layoutString.strip("\n")
-        self.layoutPositionToLetter = {k: v for k, v in enumerate(layoutString)}   # map the position to the letters assigned
-        self.layoutLetterToPosition = {v: k for k, v in enumerate(layoutString)}   # map the letters to their position on the keyboard
+        self.uniqueKeys = self.layout + "?\":"
+        self.update(self.layout)
+
+    def update(self, layout):
+        self.layoutPositionToLetter = {k: v for k, v in enumerate(layout)}   # map the position to the letters assigned
+        self.layoutLetterToPosition = {v: k for k, v in enumerate(layout)}   # map the letters to their position on the keyboard
         self.layoutLetterToPosition["?"] = self.layoutLetterToPosition["/"]
         self.layoutLetterToPosition["\""] = self.layoutLetterToPosition["'"]
         self.layoutLetterToPosition[":"] = self.layoutLetterToPosition[";"]
@@ -61,6 +65,16 @@ class Keyboard:
                 self.layoutPositionToFinger[i] = i-1
                 self.layoutPositionToFinger[i + 10] = i-1
                 self.layoutPositionToFinger[i + 20] = i-1
+        self.layoutLetterToFinger = {}
+        for i in self.uniqueKeys:
+            self.layoutLetterToFinger[i] = self.layoutPositionToFinger[self.layoutLetterToPosition[i]]
+
+    def swaptwokeys(self, key1, key2):
+        self.layout = self.layout.replace(key1, "|" + key2)
+        self.layout = self.layout.replace(key2, key1)
+        self.layout = self.layout.replace("|" + key1, key2)
+        self.update(self.layout)
+
 
     def showLayout(self):
         asciiLayout = self.layout
@@ -70,16 +84,6 @@ class Keyboard:
 
 
 
-qwertyKeyboard = Keyboard("qwertyuiopasdfghjkl;zxcvbnm,./'")
-dvorakKeyboard = Keyboard("',.pyfgcrlaoeuidhtns;qjkxbmwvz/")
-dvorakCustomKeyboard = Keyboard("',.pyfgcrlaoeuidhtns;qjkxbmwvz/")
-colemakKeyboard = Keyboard("qwfpgjluy;arstdhneiozxcvbkm,./'")
-colemakOptimizedKeyboard = Keyboard(";bufpwmlygioeahdtnsr/.,kjqvcxz'")
-colemakCustomKeyboard = Keyboard(";bufpwmlygioeahdtnsrcvzkjq,.x/'")
-custom1Keyboard = Keyboard(";,uypfwlrkaoei.dhtnsxqzv'bmgjc/")
-custom2Keyboard = Keyboard("q,uypfwlrkaoei.dhtnsxz;v'bmgjc/")
-custom3Keyboard = Keyboard(";,.ypfwlrkaoeiudhtnszxcv'bmgjq/")
-keyboardBundle = [qwertyKeyboard, dvorakKeyboard, dvorakCustomKeyboard, colemakKeyboard, colemakOptimizedKeyboard, colemakCustomKeyboard, custom1Keyboard, custom2Keyboard, custom3Keyboard]
 #custom2Keyboard = Keyboard("")
 #custom2Keyboard = Keyboard("")
 

@@ -26,8 +26,8 @@ def fingerRepetitionEvaluator(keyboard, trainingSet):
     currentFinger = 0
     pastFinger = 0
     for letter in f.read().lower():
-        if letter in keyboard.layoutLetterToPosition:
-            currentFinger = keyboard.layoutPositionToFinger[keyboard.layoutLetterToPosition[letter]]
+        if letter in keyboard.layoutLetterToFinger:
+            currentFinger = keyboard.layoutLetterToFinger[letter]
             fingerHitsPerFinger[currentFinger] += 1
             if currentFinger == pastFinger:
                 fingerRepetitionCounter += 1
@@ -38,13 +38,9 @@ def fingerRepetitionEvaluator(keyboard, trainingSet):
     return fingerRepetitionCounter, repetitionsPerFinger, fingerHitsPerFinger
 
 
-test1 = "abcdefghijklmnopqrstuvwxyz"
-test2 = "qwertyuiopasdfghjkl;zxcvbnm,./"
-test3 = "qazwsxedcrfvtgbyhnujmik,ol.p;/"
+#test1 = "abcdefghijklmnopqrstuvwxyz"
+#test2 = "qwertyuiopasdfghjkl;zxcvbnm,./"
+#test3 = "qazwsxedcrfvtgbyhnujmik,ol.p;/"
 
-for i in KeyboardModel.keyboardBundle:
-    print(i.showLayout())
-    print("base difficulty", baseEvaluator(i, "TomsCabin"))
-    print("repetition", fingerRepetitionEvaluator(i, "TomsCabin"))
-    print("-------------------------------------------------")
+
 
