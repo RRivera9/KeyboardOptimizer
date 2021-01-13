@@ -3,7 +3,6 @@ from KeyboardModel import *
 
 
 class MyTestCase(unittest.TestCase):
-    #TODO test finger stuff, and display
 
     def test_layout(self):
         testBoard = Keyboard("qwertyuiopasdfghjkl;zxcvbnm,./'")

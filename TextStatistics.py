@@ -1,3 +1,5 @@
+
+"""This is a function to analyze the text we're sifting through."""
 class TextStatistics:
     def __init__(self, pathToText):
         f = open(pathToText, "r")

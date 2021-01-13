@@ -6,7 +6,8 @@ import copy
 
 Input: a keyboard, a key to optimize, and then something to optimize for.
 Output: suggests a single swap
-TODO: change keyboard model so that it handles swaps by changing all things. Currently / and ? don't get updated"""
+TODO: change keyboard model so that it handles swaps by changing all things. Currently / and ? don't get updated
+I ended up finding this to be granular enough, so I did not implement the above."""
 
 def swapKeyForRepetitions(keyboard, flexKey):
     uniqueKeys = keyboard.layout
@@ -29,12 +30,12 @@ def swapKeyForRepetitions(keyboard, flexKey):
                 #print(newKeyboard.layout, keyboard.layout)
                 print(i, swapchange[i])
 
-    #return swapchange
+    return swapchange
 
-
-custom2Keyboard = Keyboard(";.uqjfcdhvoaeiygstnr',zpxbwkml/")
+#leftovers of my swaps on the second custom keyboard found in evaluatorCommands.
+custom2Keyboard = Keyboard(";.uqxfcdhvoaeiygstnr',zpjbwkml/")
 print(custom2Keyboard.layout)
 print(custom2Keyboard.showLayout())
-print(swapKeyForRepetitions(custom2Keyboard, "g"))
-for i in custom2Keyboard.layout:
-    print(i, swapKeyForRepetitions(custom2Keyboard, i))
+print(swapKeyForRepetitions(custom2Keyboard, ","))
+#for i in custom2Keyboard.layout:
+#    print(i, swapKeyForRepetitions(custom2Keyboard, i))

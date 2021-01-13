@@ -8,3 +8,17 @@ I chose Dvorak, but the placement of the "L" as well as the punctuation keys had
 This project is my attempt at creating a keyboard layout optimizer that can evaluate a given keyboard layout. From there, I can try out different ideas for my personal layout.
 
 Inspired by carpalX.
+
+My final result, after some reorganizing, was the following:
+
+. , u q x b w d h v /
+
+a o e i y g s t n r
+
+. ; z p j f c k m l
+
+
+Vowels and low frequency consonants on the left, high frequency consonants on the right, optimized to avoid same-finger repeated typing.
+
+Keyboard is pictured here:
+

@@ -3,6 +3,8 @@ import KeyboardModel
 
 """Take in a keyboard, and a string to test on, spit out a score based on how hard it was to type all that"""
 
+#Base difficulty of typing. Reaching your fingers to silly places, or using your pinky, among other things, affects this.
+#Training set was Uncle Tom's Cabin and Tale of Two Cities, both public domain.
 def baseEvaluator(keyboard, trainingSet):
     f = open(trainingSet, "r")
     baseDifficultyCounter = 0
@@ -15,6 +17,8 @@ def baseEvaluator(keyboard, trainingSet):
             baseDifficultyCounter += keyboard.layoutBaseEffort[keyboard.layoutLetterToPosition[letter]]
     return baseDifficultyCounter, hitsPerKeys
 
+#This evaluates each finger's repetition. If you were to type say, "ju," the J and U use the same finger. This is a tally
+#of each time that happens.
 def fingerRepetitionEvaluator(keyboard, trainingSet):
     f = open(trainingSet, "r")
     fingerRepetitionCounter = 0
