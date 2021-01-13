@@ -21,4 +21,5 @@ a o e i y g s t n r
 Vowels and low frequency consonants on the left, high frequency consonants on the right, optimized to avoid same-finger repeated typing.
 
 Keyboard is pictured here:
+ https://i.imgur.com/khVMZfg.jpg
 
